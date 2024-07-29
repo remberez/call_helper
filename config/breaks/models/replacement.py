@@ -4,29 +4,6 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-class ReplacementStatus(models.Model):
-    code = models.CharField(
-        max_length=16, primary_key=True, verbose_name='Код статуса',
-    )
-    name = models.CharField(
-        max_length=32, verbose_name='Название статуса',
-    )
-    sort = models.PositiveSmallIntegerField(
-        verbose_name='Сортировка', null=True, blank=True,
-    )
-    is_active = models.BooleanField(
-        default=True, verbose_name='Активность статуса',
-    )
-
-    class Meta:
-        verbose_name = 'Статус смены'
-        verbose_name_plural = 'Статусы смены'
-        ordering = ('sort', )
-
-    def __str__(self):
-        return f'{self.code}, {self.name}'
-
-
 class Replacement(models.Model):
     group = models.ForeignKey(
         'breaks.Group', related_name='group_replacements',
@@ -49,7 +26,7 @@ class Replacement(models.Model):
     class Meta:
         verbose_name = 'Смена'
         verbose_name_plural = 'Смены'
-        ordering = ('-date', )
+        ordering = ('-date',)
 
     def __str__(self):
         return f'Смена №{self.pk} группы {self.group}'
