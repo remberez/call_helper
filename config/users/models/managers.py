@@ -11,13 +11,10 @@ class CustomUserManager(BaseUserManager):
         if not (email or username or phone_number):
             raise ParseError('Укажите email или номер телефона')
 
-        print(username, 'before uname')
         if not username:
             if email:
-                print(email)
                 email = self.normalize_email(email)
                 username = email.split('@')[0]
-                print(username, 'uname')
             else:
                 username = phone_number
 
