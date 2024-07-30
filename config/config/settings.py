@@ -36,6 +36,7 @@ INSTALLED_APPS += [
 INSTALLED_APPS += [
     'api',
     'common',
+    'users',
     'breaks',
 ]
 
@@ -43,7 +44,8 @@ INSTALLED_APPS += [
 # Все пакеты из нижнего списка нужно добавлять после всех приложений django.
 # Нужно для нормальной работы этих пакетов.
 INSTALLED_APPS += [
-    'drf_spectacular'
+    'drf_spectacular',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -244,3 +246,6 @@ SIMPLE_JWT = {
 }
 
 ##########################################################################################
+
+AUTH_USER_MODEL = 'users.User'
+AUTHENTICATION_BACKENDS = ('users.backends.AuthBackend', )
